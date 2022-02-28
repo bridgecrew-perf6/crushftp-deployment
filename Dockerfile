@@ -1,4 +1,4 @@
-FROM ubi8/openjdk-11
+FROM registry.access.redhat.com/ubi8/openjdk-11
 
 COPY CrushFTP9.zip  /tmp/
 ADD setup.sh /home/jboss/setup.sh
