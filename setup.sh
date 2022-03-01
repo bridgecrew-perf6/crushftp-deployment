@@ -60,9 +60,11 @@ echo "########################################"
 
 chmod +x crushftp_init.sh
 
-ln -sf /proc/self/fd/1 /home/jboss/CrushFTP9/CrushFTP.log
-ln -sf /proc/self/fd/1 /home/jboss/CrushFTP.log
+# ln -sf /proc/self/fd/1 /home/jboss/CrushFTP9/CrushFTP.log
+# ln -sf /proc/self/fd/1 /home/jboss/CrushFTP.log
 
-${CRUSH_FTP_BASE_DIR}/crushftp_init.sh start
+${CRUSH_FTP_BASE_DIR}/crushftp_init.sh start &
 
-while true; do sleep 86400; done
+sleep 2 # give testServer time to create the newest log
+exec tail -f $( ls -Art CrushFTP9/*.log | tail -n 1 )
+
