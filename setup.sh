@@ -65,6 +65,6 @@ chmod +x crushftp_init.sh
 
 ${CRUSH_FTP_BASE_DIR}/crushftp_init.sh start &
 
-sleep 2 # give testServer time to create the newest log
+sleep 30 # give testServer time to create the newest log
 exec tail -f $( ls -Art CrushFTP9/*.log | tail -n 1 )
 
