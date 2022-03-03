@@ -7,7 +7,6 @@ RUN microdnf update && microdnf install procps
 RUN cp /etc/passwd /home/jboss/passwd
 RUN cat /home/jboss/passwd
 RUN ls -lart /home/jboss/passwd
-RUN env | grep -i nwrap
 RUN chmod 777 /home/jboss /home/jboss/passwd
 RUN ls -lart /home/jboss/passwd
 ENTRYPOINT [ "/bin/bash", "/home/jboss/setup.sh" ]
