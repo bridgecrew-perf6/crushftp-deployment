@@ -61,6 +61,7 @@ echo "########################################"
 # ln -sf /proc/self/fd/1 /home/jboss/CrushFTP9/CrushFTP.log
 # ln -sf /proc/self/fd/1 /home/jboss/CrushFTP.log
 
+chmod 777 ${CRUSH_FTP_BASE_DIR}/crushftp_init.sh
 ${CRUSH_FTP_BASE_DIR}/crushftp_init.sh start &
 
 sleep 30 # give testServer time to create the newest log
