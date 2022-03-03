@@ -65,5 +65,9 @@ chmod 777 ${CRUSH_FTP_BASE_DIR}/crushftp_init.sh
 ${CRUSH_FTP_BASE_DIR}/crushftp_init.sh start &
 
 sleep 30 # give testServer time to create the newest log
+
+mkdir -p /home/jboss/CrushFTP9/logs
+ln -s /home/jboss/CrushFTP9/logs/ /var/app/logs
+
 exec tail -f $( ls -Art ~/CrushFTP9/*.log | tail -n 1 )
 
