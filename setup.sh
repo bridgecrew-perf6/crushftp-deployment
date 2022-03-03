@@ -60,5 +60,5 @@ echo "########################################"
 
 chmod +x crushftp_init.sh
 
-${CRUSH_FTP_BASE_DIR}/crushftp_init.sh start 
+${CRUSH_FTP_BASE_DIR}/crushftp_init.sh start &
 
