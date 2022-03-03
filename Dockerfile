@@ -4,6 +4,9 @@ COPY CrushFTP9.zip  /tmp/
 ADD setup.sh /home/jboss/setup.sh
 USER root
 RUN microdnf update && microdnf install procps
+RUN groupadd -r jboss -g 185 && useradd -u 185 -r -g root -G jboss -m -d /home/jboss -s /sbin/nologin -c "JBoss user" jboss
+RUN cp /etc/passwd /home/jboss/passwd
+RUN chmod ug+rwX /home/jboss /home/jboss/passwd
 ENTRYPOINT [ "/bin/bash", "/home/jboss/setup.sh" ]
 
 EXPOSE 21 443 2222 8080 8888 9022 9090
