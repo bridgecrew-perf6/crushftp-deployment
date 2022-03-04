@@ -56,18 +56,23 @@ echo "# Password:   ${CRUSH_ADMIN_PASSWORD}"
 
 echo "########################################"
 
- 
-
-# ln -sf /proc/self/fd/1 /home/jboss/CrushFTP9/CrushFTP.log
-# ln -sf /proc/self/fd/1 /home/jboss/CrushFTP.log
-
 chmod 777 ${CRUSH_FTP_BASE_DIR}/crushftp_init.sh
 ${CRUSH_FTP_BASE_DIR}/crushftp_init.sh start &
 
-sleep 30 # give testServer time to create the newest log
+sleep 30 # give test server time to create the newest log
 
+# Ensure log directory is there if it doesn't exist
 mkdir -p /home/jboss/CrushFTP9/logs
-ln -s /home/jboss/CrushFTP9/logs/ /var/app/logs
 
-exec tail -f $( ls -Art ~/CrushFTP9/*.log | tail -n 1 )
+# linking CrushFTP log directory to a mount that can be monitored by FluentD side car
+ln -s /home/jboss/CrushFTP9/logs/ /var/app/
+
+# link the CrushFTP process log file to a mount that can be monitored by FluentD side car
+ln -s /home/jboss/CrushFTP9/CrushFTP.log /var/app/
+
+# create bogus json log
+export isodate=`date --iso-8601=seconds`
+echo '{timestamp: "%isodate%", message: "CrushFTP server started"}' > startup.log
+
+exec tail -f startup.log
 
