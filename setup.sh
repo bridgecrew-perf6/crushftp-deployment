@@ -8,8 +8,7 @@ CRUSH_FTP_BASE_DIR="/home/jboss/CrushFTP9"
 
 if [[ -f /tmp/CrushFTP9.zip ]] ; then
 
-    echo '{timestamp: \"`date --iso-8601=seconds`\", message: "Unzipping CrushFTP..."}' >> crushstartup.log
-    echo "Unzipping CrushFTP..."
+    echo "{timestamp: \"`date --iso-8601=seconds`\", message: \"Unzipping CrushFTP...\"}" >> crushstartup.log
 
     unzip -o -q /tmp/CrushFTP9.zip -d /home/jboss/
 
@@ -39,7 +38,7 @@ fi
 
 if [[ ! -d ${CRUSH_FTP_BASE_DIR}/users/MainUsers/${CRUSH_ADMIN_USER} ]] || [[ -f ${CRUSH_FTP_BASE_DIR}/admin_user_set ]] ; then
 
-    echo "Creating default admin..."
+    echo "{timestamp: \"`date --iso-8601=seconds`\", message: \"Creating default admin...\"}" >> crushstartup.log
 
     cd ${CRUSH_FTP_BASE_DIR} && java -jar ${CRUSH_FTP_BASE_DIR}/CrushFTP.jar -a "${CRUSH_ADMIN_USER}" "${CRUSH_ADMIN_PASSWORD}"
 
@@ -49,7 +48,7 @@ fi
 
 sleep 1
 
-echo '{timestamp: \"`date --iso-8601=seconds`\", message: "User: ${CRUSH_ADMIN_USER} / Password: ${CRUSH_ADMIN_PASSWORD}"}' >> crushstartup.log
+echo "{timestamp: \"`date --iso-8601=seconds`\", message: \"User: ${CRUSH_ADMIN_USER} / Password: ${CRUSH_ADMIN_PASSWORD}\"}" >> crushstartup.log
 
 # TODO configure the logs of crush startup to be in JSON format
 chmod 777 ${CRUSH_FTP_BASE_DIR}/crushftp_init.sh
