@@ -70,5 +70,5 @@ ln -s /home/jboss/CrushFTP9/CrushFTP.log /var/app/
 export isodate=\"`date --iso-8601=seconds`\"
 echo '{timestamp: \"`date --iso-8601=seconds`\", message: "CrushFTP server started"}' >> crushstartup.log
 
-exec tail -f startup.log
+exec tail -f crushstartup.log
 
