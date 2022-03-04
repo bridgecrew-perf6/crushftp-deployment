@@ -66,8 +66,7 @@ ln -s /home/jboss/CrushFTP9/logs/ /var/app/
 ln -s /home/jboss/CrushFTP9/CrushFTP.log /var/app/
 
 # create bogus json log
-export isodate=\"`date --iso-8601=seconds`\"
-echo '{timestamp: \"`date --iso-8601=seconds`\", message: "CrushFTP server started"}' >> crushstartup.log
+echo "{timestamp: \"`date --iso-8601=seconds`\", message: \"CrushFTP server started\"}" >> crushstartup.log
 
 exec tail -f crushstartup.log
 
