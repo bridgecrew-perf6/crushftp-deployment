@@ -8,6 +8,7 @@ CRUSH_FTP_BASE_DIR="/home/jboss/CrushFTP9"
 
 if [[ -f /tmp/CrushFTP9.zip ]] ; then
 
+    echo '{timestamp: \"`date --iso-8601=seconds`\", message: "Unzipping CrushFTP..."}' >> crushstartup.log
     echo "Unzipping CrushFTP..."
 
     unzip -o -q /tmp/CrushFTP9.zip -d /home/jboss/
@@ -48,14 +49,9 @@ fi
 
 sleep 1
 
-echo "########################################"
+echo '{timestamp: \"`date --iso-8601=seconds`\", message: "User: ${CRUSH_ADMIN_USER} / Password: ${CRUSH_ADMIN_PASSWORD}"}' >> crushstartup.log
 
-echo "# User:       ${CRUSH_ADMIN_USER}"
-
-echo "# Password:   ${CRUSH_ADMIN_PASSWORD}"
-
-echo "########################################"
-
+# TODO configure the logs of crush startup to be in JSON format
 chmod 777 ${CRUSH_FTP_BASE_DIR}/crushftp_init.sh
 ${CRUSH_FTP_BASE_DIR}/crushftp_init.sh start &
 
@@ -71,8 +67,8 @@ ln -s /home/jboss/CrushFTP9/logs/ /var/app/
 ln -s /home/jboss/CrushFTP9/CrushFTP.log /var/app/
 
 # create bogus json log
-export isodate=`date --iso-8601=seconds`
-echo '{timestamp: "%isodate%", message: "CrushFTP server started"}' > startup.log
+export isodate=\"`date --iso-8601=seconds`\"
+echo '{timestamp: \"`date --iso-8601=seconds`\", message: "CrushFTP server started"}' >> crushstartup.log
 
 exec tail -f startup.log
 
