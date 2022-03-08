@@ -5,6 +5,8 @@ RUN mkdir -p /var/app
 RUN chmod 777 /var/app
 COPY CrushFTP9.zip  /tmp/
 ADD setup.sh /var/app/setup.sh
+RUN chmod 777 /var/app/setup.sh
+RUN ls -lart /var/app/setup.sh
 RUN microdnf update && microdnf install procps
 ENTRYPOINT [ "/bin/bash", "/var/app/setup.sh" ]
 
