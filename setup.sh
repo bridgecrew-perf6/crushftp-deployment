@@ -2,7 +2,7 @@
 
  
 
-CRUSH_FTP_BASE_DIR="/home/jboss/CrushFTP9"
+CRUSH_FTP_BASE_DIR="/var/app/CrushFTP9"
 
  
 
@@ -10,7 +10,7 @@ if [[ -f /tmp/CrushFTP9.zip ]] ; then
 
     echo "{timestamp: \"`date --iso-8601=seconds`\", message: \"Unzipping CrushFTP...\"}" >> crushstartup.log
 
-    unzip -o -q /tmp/CrushFTP9.zip -d /home/jboss/
+    unzip -o -q /tmp/CrushFTP9.zip -d /var/app/
 
     rm -f /tmp/CrushFTP9.zip
 
