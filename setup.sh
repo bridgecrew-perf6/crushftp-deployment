@@ -57,13 +57,10 @@ ${CRUSH_FTP_BASE_DIR}/crushftp_init.sh start &
 sleep 30 # give test server time to create the newest log
 
 # Ensure log directory is there if it doesn't exist
-mkdir -p /home/jboss/CrushFTP9/logs
+mkdir -p ${CRUSH_FTP_BASE_DIR}/logs
 
-# linking CrushFTP log directory to a mount that can be monitored by FluentD side car
-ln -s /home/jboss/CrushFTP9/logs/ /var/app/
-
-# link the CrushFTP process log file to a mount that can be monitored by FluentD side car
-ln -s /home/jboss/CrushFTP9/CrushFTP.log /var/app/
+# Enusre everyone has access to everything
+chmod -R 777 /var/app/CrushFTP9
 
 # create bogus json log
 echo "{timestamp: \"`date --iso-8601=seconds`\", message: \"CrushFTP server started\"}" >> crushstartup.log
