@@ -50,9 +50,21 @@ sleep 1
 
 echo "{timestamp: \"`date --iso-8601=seconds`\", message: \"User: ${CRUSH_ADMIN_USER} / Password: ${CRUSH_ADMIN_PASSWORD}\"}" >> crushstartup.log
 
+#for debugging
+ls -lR /var/app
+sleep 30 # give test server time to create the newest log
+echo "Count 1"
+
+
 # TODO configure the logs of crush startup to be in JSON format
 chmod -R 777 ${CRUSH_FTP_BASE_DIR}
 chmod 777 ${CRUSH_FTP_BASE_DIR}/crushftp_init.sh
+
+#for debugging
+ls -lR /var/app
+sleep 30 # give test server time to create the newest log
+echo "Count 2"
+
 ${CRUSH_FTP_BASE_DIR}/crushftp_init.sh start &
 
 sleep 30 # give test server time to create the newest log
