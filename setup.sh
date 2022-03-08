@@ -2,6 +2,8 @@
 
  
 
+chmod -R 777 /var/app
+
 CRUSH_FTP_BASE_DIR="/var/app/CrushFTP9"
 
  
@@ -13,6 +15,8 @@ if [[ -f /tmp/CrushFTP9.zip ]] ; then
     unzip -o -q /tmp/CrushFTP9.zip -d /var/app/
 
     rm -f /tmp/CrushFTP9.zip
+
+    chmod -R 777 ${CRUSH_FTP_BASE_DIR}
 
 fi
 
@@ -57,13 +61,7 @@ echo "Count 1"
 
 
 # TODO configure the logs of crush startup to be in JSON format
-chmod -R 777 ${CRUSH_FTP_BASE_DIR}
 chmod 777 ${CRUSH_FTP_BASE_DIR}/crushftp_init.sh
-
-#for debugging
-ls -lR /var/app
-sleep 30 # give test server time to create the newest log
-echo "Count 2"
 
 ${CRUSH_FTP_BASE_DIR}/crushftp_init.sh start &
 
