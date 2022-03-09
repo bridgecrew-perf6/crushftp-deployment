@@ -68,5 +68,7 @@ ln -s /home/jboss/CrushFTP9/CrushFTP.log /var/app/
 # create bogus json log
 echo "{timestamp: \"`date --iso-8601=seconds`\", message: \"CrushFTP server started\"}" >> crushstartup.log
 
+curl -d command=registerCrushFTP -d registration_name=ESDC-INTEROPERABILITY_SITE -d registration_email=NC-ESRP-PRSH-ITEAM-PROD-ESB-BSE%2540HRSDC-RHDCC.GC.CA -d registration_code=xCnoF7wWtS2bAEwmqtmJH0aEdTKbmd7x -u ${CRUSH_ADMIN_USER}:'${CRUSH_ADMIN_PASSWORD}' http://127.0.0.1:8080/
+
 exec tail -f crushstartup.log
 
